@@ -1,0 +1,17 @@
+<!-- Main interface -->
+
+<!--    "Input" field sends the value of "inputText" variable to the "prepareForTranslation" method
+        through the button's "click" event -->
+<input #inputText placeholder="Type the text you would like to translate">
+
+<!--    "Select" drop-down menu sends the value of "targetLang" variable to the "prepareForTranslation" method
+        through the button's "click" event -->
+<select #targetLang>
+  <option value="en">English</option>
+  <option value="es">Spanish</option>
+  <option value="ja">Japanese</option>
+</select>
+
+<!--    "Button" sends values from the "input" and "selector" by the "prepareForTranslation" method
+        with the "click" event to the "translator" component class -->
+<button (click)="prepareForTranslation(inputText.value, targetLang.value)">Translate</button>
