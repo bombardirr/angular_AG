@@ -46,7 +46,20 @@ this.translatorService.getTranslation(objToSend).subscribe((income: any) => {
   this.result = {
     resultText: income.data.translations[0].translatedText
   }
-  console.log(this.result);
+  
+// Sending the translation to the local storage and showing the result
+// through the console
+if (localStorage.length != 0) {
+  const id = "Translation_" + localStorage.length
+  localStorage.setItem(id, this.result.resultText)
+} else {
+  localStorage.setItem('Translation_0', this.result.resultText)
+}
+for (let i = 0; i < localStorage.length; i++) {
+  const key = localStorage.key(i);
+  const value = localStorage.getItem(key!);
+  console.log({key, value})
+}
 });
 };
 };
