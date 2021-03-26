@@ -8,3 +8,10 @@ export interface SendingObj {
 export interface ResultText {
     resultText: string;
 }
+
+export interface HistoryObj {
+    initLang: string;
+    initText: string;
+    targetLang: string;
+    targetText: string;
+}

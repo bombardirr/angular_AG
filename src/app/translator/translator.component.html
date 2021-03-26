@@ -1,5 +1,11 @@
 <!-- Main interface -->
 
+<select #initLang>
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="ja">Japanese</option>
+      </select>
+
 <!--    "Input" field sends the value of "inputText" variable to the "prepareForTranslation" method
         through the button's "click" event -->
 <input #inputText placeholder="Type the text you would like to translate">
@@ -14,4 +20,11 @@
 
 <!--    "Button" sends values from the "input" and "selector" by the "prepareForTranslation" method
         with the "click" event to the "translator" component class -->
-<button (click)="prepareForTranslation(inputText.value, targetLang.value)">Translate</button>
+<button (click)="prepareForTranslation(initLang.value, inputText.value, targetLang.value)">Translate</button>
+
+<app-history
+[initLang]='initLang.value'
+[initText]='inputText.value'
+[targetLang]='targetLang.value'
+[targetText]='result.resultText'
+></app-history>

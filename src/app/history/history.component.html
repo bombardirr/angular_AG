@@ -1,0 +1,17 @@
+<div *ngIf='targetText'>
+    <div>{{initLang}}</div>
+    <div>{{initText}}</div>
+    <div>{{targetLang}}</div>
+    <div>{{targetText}}</div>
+</div>
+<br>
+
+<button (click)='newArr = []; showHist()'>History</button>
+
+
+<div *ngFor="let item of newArr">
+    {{item.initLang}}
+    {{item.initText}}
+    {{item.targetLang}}
+    {{item.targetText}}
+</div>

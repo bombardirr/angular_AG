@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // To work with interfaces
-import {SendingObj, ResultText} from '../interface/translatorInterface';
+import {SendingObj, ResultText, HistoryObj} from '../interface/translatorInterface';
 // Service that handles the sending/receiving data
 // to/from the Google translate API
 import {TranslatorService} from '../translator.service';
@@ -19,6 +19,7 @@ result: ResultText = {
   resultText: ''
 }
 
+
 // The "TranslatorService" injection
   constructor(
     private translatorService: TranslatorService
@@ -28,7 +29,7 @@ result: ResultText = {
   }
 // The method prepares the input data that came from the html template
 // to be sent to the "TranslatorService"
-  prepareForTranslation(textToTranslate: string, chosenLang: string) {
+  prepareForTranslation(initLang:string ,textToTranslate: string, chosenLang: string) {
     const objToSend: SendingObj = {
       q: textToTranslate,
       target: chosenLang
@@ -46,20 +47,21 @@ this.translatorService.getTranslation(objToSend).subscribe((income: any) => {
   this.result = {
     resultText: income.data.translations[0].translatedText
   }
-  
+  const temp: HistoryObj = {
+    initLang: initLang,
+    initText: textToTranslate,
+    targetLang: chosenLang,
+    targetText: this.result.resultText
+  };
 // Sending the translation to the local storage and showing the result
 // through the console
-if (localStorage.length != 0) {
-  const id = "Translation_" + localStorage.length
-  localStorage.setItem(id, this.result.resultText)
-} else {
-  localStorage.setItem('Translation_0', this.result.resultText)
-}
-for (let i = 0; i < localStorage.length; i++) {
-  const key = localStorage.key(i);
-  const value = localStorage.getItem(key!);
-  console.log({key, value})
-}
+  if (localStorage.length != 0) {
+    const id = JSON.stringify(localStorage.length)
+    localStorage.setItem(id, (JSON.stringify(temp)))
+  } else {
+    localStorage.setItem('0', JSON.stringify(temp))
+  }
 });
+
 };
-};
+}
