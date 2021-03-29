@@ -1,11 +1,3 @@
-
-
-Read this first, please.
-
-This version shows the outcome through the console. Copy and paste your auth Google translate API key to the "key" property of the TranslatorService class. The app will not work without this "key."
-
-Refactoring stage now.
-
 # GTranslate
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.

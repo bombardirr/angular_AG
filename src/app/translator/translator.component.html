@@ -1,10 +1,8 @@
 <!-- Main interface -->
 
 <select #initLang>
-        <option value="en">English</option>
-        <option value="es">Spanish</option>
-        <option value="ja">Japanese</option>
-      </select>
+        <option *ngFor='let lang of langObj' value={{lang.langShort}}>{{lang.langLong}}</option>
+</select>
 
 <!--    "Input" field sends the value of "inputText" variable to the "prepareForTranslation" method
         through the button's "click" event -->
@@ -13,18 +11,22 @@
 <!--    "Select" drop-down menu sends the value of "targetLang" variable to the "prepareForTranslation" method
         through the button's "click" event -->
 <select #targetLang>
-  <option value="en">English</option>
-  <option value="es">Spanish</option>
-  <option value="ja">Japanese</option>
+        <option *ngFor='let lang of langObj' value={{lang.langShort}}>{{lang.langLong}}</option>
 </select>
 
 <!--    "Button" sends values from the "input" and "selector" by the "prepareForTranslation" method
-        with the "click" event to the "translator" component class -->
-<button (click)="prepareForTranslation(initLang.value, inputText.value, targetLang.value)">Translate</button>
+        with the "click" event to the "translator" component class.
+        It also hides the history after every translate by clearing the newArr array of ordered data
+        gathered from the localStorage. -->
+<button
+        (click)="prepareForTranslation(initLang.value, inputText.value, targetLang.value); child.newArr = []">Translate
+</button>
 
-<app-history
-[initLang]='initLang.value'
-[initText]='inputText.value'
-[targetLang]='targetLang.value'
-[targetText]='result.resultText'
-></app-history>
+<!-- The data will directly to the history component -->
+<app-history 
+        [initLang]='initLang.value'
+        [initText]='inputText.value'
+        [targetLang]='targetLang.value'
+        [targetText]='result.resultText'
+        #child>
+</app-history>

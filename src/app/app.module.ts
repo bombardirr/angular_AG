@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { TranslatorComponent } from './translator/translator.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HistoryComponent } from './history/history.component'
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
