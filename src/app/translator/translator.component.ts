@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+// Importing the "ChangeDetectorRef" to force change detection and
+// avoid the "ExpressionChangedAfterItHasBeenCheckedError" error
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 // To work with interfaces
 import { SendingObj, ResultText, HistoryObj, LangObj } from '../interface/translatorInterface';
@@ -19,9 +21,15 @@ export class TranslatorComponent implements OnInit {
     resultText: ''
   }
   // The "TranslatorService" injection
+  // The "ChangeDetectorRef" injection to avoid the "ExpressionChangedAfterItHasBeenCheckedError" error
   constructor(
-    private translatorService: TranslatorService
+    private translatorService: TranslatorService,
+    private cd: ChangeDetectorRef
   ) { }
+  // Forcing change detection to avoid the "ExpressionChangedAfterItHasBeenCheckedError" error
+  ngAfterViewInit() {
+    this.cd.detectChanges();
+  }
 
   ngOnInit(): void {
   }
