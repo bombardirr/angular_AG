@@ -18,7 +18,7 @@
         with the "click" event to the "translator" component class.
         It also hides the history after every translate by clearing the newArr array of ordered data
         gathered from the localStorage. -->
-<button
+<button class="big-button"
         (click)="prepareForTranslation(initLang.value, inputText.value, targetLang.value); child.newArr = []">Translate
 </button>
 

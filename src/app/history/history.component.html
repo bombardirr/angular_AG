@@ -1,25 +1,36 @@
 <!--    If we have the translation that the parent component transferred here,
         we will see current translation. -->
-<div *ngIf='targetText'>
-    <div>{{initLang}}</div>
-    <div>{{initText}}</div>
-    <div>{{targetLang}}</div>
-    <div>{{targetText}}</div>
+<div class="current-translation" *ngIf='targetText'>
+    <div>
+        <div>Translated from: {{initLang}}</div>
+        <div>{{initText}}</div>
+    </div>
+    <div>
+        <div>Translated to: {{targetLang}}</div>
+        <div>{{targetText}}</div>
+    </div>
 </div>
 <br>
 <!-- Buttons that show the history and hide it if needed. -->
-<button (click)='newArr = []; showHist()'>History</button>
-<button (click)='newArr = []'>X</button>
+<button class="big-button" (click)='newArr = []; showHist()'>History</button>
+<button class="big-button" (click)='newArr = []'>X</button>
 
 <!-- Here we show the translation history after the "History" button click event -->
-<div *ngFor="let item of newArr">
-    <!-- We remove empty results from the history view. -->
-    <div *ngIf="!item.initText; else elseBlock">
+<div class="container">
+    <div class="history-item" *ngFor="let item of newArr">
+        <!-- We show the history from the localStorage. -->
+        <div *ngIf="item.targetText; else elseBlock">
+            <div>
+                <div class="lang-init">Translated from: {{item.initLang}}</div>
+                <div>{{item.initText}}</div>
+            </div>
+            <div>
+                <div class="lang-targ">Translated to: {{item.targetLang}}</div>
+                <div>{{item.targetText}}</div>
+            </div>
+        </div>
+        <ng-template #elseBlock>
+            <div>Nothing to translate here:)</div>
+        </ng-template>
     </div>
-    <ng-template #elseBlock>
-        {{item.initLang}}
-        {{item.initText}}
-        {{item.targetLang}}
-        {{item.targetText}}
-    </ng-template>
 </div>

@@ -1,0 +1,48 @@
+.current-translation div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.current-translation {
+    margin-top: 1rem;
+    border: 2px solid #484D46;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 3px;
+}
+
+.lang-init,
+.lang-targ {
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.lang-targ {
+    background: #66CD00;
+}
+
+.lang-init {
+    background: #FFA500;
+}
+
+.history-item div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.history-item {
+    border: 2px solid #484D46;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 3px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+}
